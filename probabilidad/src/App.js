@@ -1,12 +1,22 @@
 import React from 'react';
-import {Grommet} from 'grommet'
+import { Grommet } from 'grommet'
 
-/** Required Components */
-import AppBar from '../src/Components/AppBar'
+/** Custom Pages */
+import HomePage from '../src/Pages/HomePage'
+
+/** Router DOM */
+import {Router, Route} from 'react-router-dom'
+
+/** Browser History */
+import createBrowserHistory from 'history/createBrowserHistory'
+export const history = createBrowserHistory()
 
 /** Global Theming */
 const theme = {
   global: {
+    colors : {
+      brand: '#228BE6'
+    },
     font: {
       family: 'Roboto',
       size: '14px',
@@ -18,11 +28,13 @@ const theme = {
 
 function App() {
   return (
-   <Grommet theme={theme}>
-      <AppBar>
-        Hello Grommet!
-      </AppBar>
-      </Grommet>
+    <Grommet theme={theme}>
+      <Router history={history}>
+        <Route exact path="/" component={
+          () => <HomePage/>
+        }/>
+      </Router>
+    </Grommet>
   );
 }
 
